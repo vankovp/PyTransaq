@@ -1,0 +1,14 @@
+C:\Users\некто\Downloads\PyTransaq-master\PyTransaq-master\Transaq\Transaq\obj\Debug\netcoreapp3.1\Transaq.csproj.AssemblyReference.cache
+C:\Users\некто\Downloads\PyTransaq-master\PyTransaq-master\Transaq\Transaq\obj\Debug\netcoreapp3.1\Transaq.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\некто\Downloads\PyTransaq-master\PyTransaq-master\Transaq\Transaq\obj\Debug\netcoreapp3.1\Transaq.AssemblyInfoInputs.cache
+C:\Users\некто\Downloads\PyTransaq-master\PyTransaq-master\Transaq\Transaq\obj\Debug\netcoreapp3.1\Transaq.AssemblyInfo.cs
+C:\Users\некто\Downloads\PyTransaq-master\PyTransaq-master\Transaq\Transaq\obj\Debug\netcoreapp3.1\Transaq.csproj.CoreCompileInputs.cache
+C:\Users\некто\Downloads\PyTransaq-master\PyTransaq-master\Transaq\Transaq\bin\Debug\netcoreapp3.1\Transaq.exe
+C:\Users\некто\Downloads\PyTransaq-master\PyTransaq-master\Transaq\Transaq\bin\Debug\netcoreapp3.1\Transaq.deps.json
+C:\Users\некто\Downloads\PyTransaq-master\PyTransaq-master\Transaq\Transaq\bin\Debug\netcoreapp3.1\Transaq.runtimeconfig.json
+C:\Users\некто\Downloads\PyTransaq-master\PyTransaq-master\Transaq\Transaq\bin\Debug\netcoreapp3.1\Transaq.runtimeconfig.dev.json
+C:\Users\некто\Downloads\PyTransaq-master\PyTransaq-master\Transaq\Transaq\bin\Debug\netcoreapp3.1\Transaq.dll
+C:\Users\некто\Downloads\PyTransaq-master\PyTransaq-master\Transaq\Transaq\bin\Debug\netcoreapp3.1\Transaq.pdb
+C:\Users\некто\Downloads\PyTransaq-master\PyTransaq-master\Transaq\Transaq\obj\Debug\netcoreapp3.1\Transaq.dll
+C:\Users\некто\Downloads\PyTransaq-master\PyTransaq-master\Transaq\Transaq\obj\Debug\netcoreapp3.1\Transaq.pdb
+C:\Users\некто\Downloads\PyTransaq-master\PyTransaq-master\Transaq\Transaq\obj\Debug\netcoreapp3.1\Transaq.genruntimeconfig.cache

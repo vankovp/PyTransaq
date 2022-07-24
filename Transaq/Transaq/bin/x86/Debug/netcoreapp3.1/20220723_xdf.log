@@ -1,0 +1,9 @@
+011107.327805 [13748] [7192] <cmd> [V] System version 6.28. TXmlConnector version 2.21.16
+011107.329803 [13748] [7192] <cmd> [I] <command id="connect"><login>FZTC19829A</login><password>*</password><host>tr1.finam.ru</host><port>3900</port><rqdelay>100</rqdelay><session_timeout>25</session_timeout> <request_timeout>10</request_timeout></command>
+011108.339867 [13748] [7192] <res> [R] <result success="true"/>
+011304.855480 [4716] [4820] <cmd> [V] System version 6.28. TXmlConnector version 2.21.16
+011304.856484 [4716] [4820] <cmd> [I] <command id="connect"><login>FZTC19829A</login><password>*</password><host>tr1.finam.ru</host><port>3900</port><rqdelay>100</rqdelay><session_timeout>25</session_timeout> <request_timeout>10</request_timeout></command>
+011305.864529 [4716] [4820] <res> [R] <result success="true"/>
+011605.079689 [14512] [14516] <cmd> [V] System version 6.28. TXmlConnector version 2.21.16
+011605.080659 [14512] [14516] <cmd> [I] <command id="connect"><login>FZTC19829A</login><password>*</password><host>tr1.finam.ru</host><port>3900</port><rqdelay>100</rqdelay><session_timeout>25</session_timeout> <request_timeout>10</request_timeout></command>
+011606.090717 [14512] [14516] <res> [R] <result success="true"/>

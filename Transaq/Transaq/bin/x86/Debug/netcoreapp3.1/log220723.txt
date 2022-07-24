@@ -1,0 +1,17 @@
+01:11:07.237 START LOGGING
+01:11:07.329 Initialize() OK
+01:11:07.329 Connecting FZTC19829A
+01:13:04.836 START LOGGING
+01:13:04.856 Initialize() OK
+01:13:04.856 Connecting FZTC19829A
+01:13:06.153 Waiting for a connection at port 11002...
+01:13:06.155 Client is connected at port 11002
+01:13:06.156 Waiting for a connection at port 11005...
+01:13:06.157 Client is connected at port 11005
+01:16:05.060 START LOGGING
+01:16:05.080 Initialize() OK
+01:16:05.080 Connecting FZTC19829A
+01:16:06.392 Waiting for a connection at port 11002...
+01:16:06.394 Client is connected at port 11002
+01:16:06.396 Waiting for a connection at port 11005...
+01:16:06.397 Client is connected at port 11005

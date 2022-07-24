@@ -1,0 +1,46 @@
+
+
+Start logging 23/07/2022 01:11:08 Transaq TXmlConnector, ver.6.28-T68-37-2.21.16
+01:11:08.342 {21A0} Connecting to tr1.finam.ru:3900 buf=65512...
+01:11:08.619 {21A0} Connected.
+01:11:08.802 {21A0} Session timeout 25000 ms.
+01:11:08.802 {21A0} Request timeout 10000 ms.
+01:11:08.803 {21A0} SYS# 629/628 PRO# 68/68=0 BLD# 18/2.21.16=0 SID# 6 UID# 562419
+01:11:08.818 {21A0} Server time:23/07/2022 1:11:09, RQL:15, Diff*10:10
+01:11:08.864 {21A0} Server time:23/07/2022 1:11:09, RQL:14, Diff*10:10
+01:11:17.053 {21A0} Snapshot accepted
+01:11:17.144 {21A0} Snapshot done. 
+01:11:17.145 {21A0} Undefined EDP Rates:1/11: JPY=15:JPYRUB_TOM.
+
+Start logging 23/07/2022 01:13:05 Transaq TXmlConnector, ver.6.28-T68-37-2.21.16
+01:13:05.866 {303C} Connecting to tr1.finam.ru:3900 buf=65512...
+01:13:05.896 {303C} Connected.
+01:13:06.079 {303C} Session timeout 25000 ms.
+01:13:06.080 {303C} Request timeout 10000 ms.
+01:13:06.080 {303C} SYS# 629/628 PRO# 68/68=0 BLD# 18/2.21.16=0 SID# 6 UID# 562419
+01:13:06.094 {303C} Server time:23/07/2022 1:13:06, RQL:14, Diff*10:0
+01:13:06.137 {303C} Server time:23/07/2022 1:13:06, RQL:13, Diff*10:0
+01:13:13.940 {303C} Snapshot accepted
+01:13:14.040 {303C} Snapshot done. 
+01:13:14.040 {303C} Undefined EDP Rates:1/11: JPY=15:JPYRUB_TOM.
+01:13:57.063 {3494} Trade Stream Closed. Reason: 'Destruct'. S:4138/487, R:6142748/2074, E:0, Rl:0
+
+
+Start logging 23/07/2022 01:16:06 Transaq TXmlConnector, ver.6.28-T68-37-2.21.16
+01:16:06.091 {3B00} Connecting to tr1.finam.ru:3900 buf=65512...
+01:16:06.122 {3B00} Connected.
+01:16:06.303 {3B00} Session timeout 25000 ms.
+01:16:06.303 {3B00} Request timeout 10000 ms.
+01:16:06.303 {3B00} SYS# 629/628 PRO# 68/68=0 BLD# 18/2.21.16=0 SID# 6 UID# 562419
+01:16:06.317 {3B00} Server time:23/07/2022 1:16:06, RQL:14, Diff*10:0
+01:16:06.377 {3B00} Server time:23/07/2022 1:16:06, RQL:29, Diff*10:0
+01:16:14.102 {3B00} Snapshot accepted
+01:16:14.202 {3B00} Snapshot done. 
+01:16:14.202 {3B00} Undefined EDP Rates:1/11: JPY=15:JPYRUB_TOM.
+02:02:28.108 {3B00} GtUp:7
+05:00:01.462 {3B00} Server is to be down. 
+05:00:02.672 {3B00} 
+RQ: 2
+SG: 1
+WR: 
+ 
