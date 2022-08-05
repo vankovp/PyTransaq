@@ -1,6 +1,11 @@
 from client import Client
 import time
 from typing import List, Callable
+import os
+
+
+
+password = os.environ["TRANSAQ_PASS"]
 
 class TransaqConnector:
 
@@ -24,8 +29,8 @@ class TransaqConnector:
         LastUp = 'LastUp'
         LastDown = 'LastDown'
 
-    def __init__(self, ports : List[int] = None, news_callback : Callable = None, accoiunt_callback : Callable = None):
-        self.ADDRESS = '127.0.0.1'
+    def __init__(self, ip, ports : List[int] = None, news_callback : Callable = None, accoiunt_callback : Callable = None):
+        self.ADDRESS = ip
         if ports is not None:
             self.PORTs = ports
         else:
@@ -48,7 +53,7 @@ class TransaqConnector:
 
     def connect(self, login: str) -> bool:
 
-        return self.client.connect2transaq(login)
+        return self.client.connect2transaq(login, password)
 
     def close(self):
         self.client.close_connection()

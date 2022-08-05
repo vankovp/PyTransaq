@@ -12,7 +12,8 @@ class TransaqCSharp(Process):
         self._target = self.run_server
 
     def run_server(self):
-        os.system("Transaq\\Transaq\\bin\\x86\\Debug\\netcoreapp3.1\\Transaq.exe " + " ".join([str(p) for p in self.ports]))
+        pass
+    #    os.system("Transaq\\Transaq\\bin\\x86\\Debug\\netcoreapp3.1\\Transaq.exe " + " ".join([str(p) for p in self.ports]))
             
 
 class Connector(socket.socket):
@@ -298,7 +299,7 @@ class Client(Connector):
         self.tproc.terminate()
         self.close()
 
-    def connect2transaq(self, login):
+    def connect2transaq(self, login, password):
 
         def fill_struct(section, msg):
             if section not in self.INIT_STRUCTURE.keys():
@@ -312,7 +313,6 @@ class Client(Connector):
                 else:
                     self.INIT_STRUCTURE[section] += msg
             
-        password = input('Input password: ')
 
         self.send(bytes('auth:%s;%s\0'%(login,password), 'utf-8'))
         msg = self.process_request(self.connect2transaq.__name__, True)
