@@ -176,6 +176,7 @@ class TData(Connector):
                 while '\0' not in msg:
                     msg += str(self.recv(1), 'utf-8')
             except socket.timeout:
+                self.clear_queue()
                 return 
 
             section = msg.split(":")[0]
@@ -198,7 +199,7 @@ class TData(Connector):
                     except UnicodeDecodeError:
                         bmsg += self.recv(1)
             msg = msg.replace('\0', '')
-
+            self.clear_queue()
             return [section, msg]
         except ConnectionResetError:
             pass
