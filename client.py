@@ -156,7 +156,7 @@ class TData(Connector):
 
         try:
             while True:
-                self.recv(1)
+                str(self.recv(1), 'utf-8')
         except Exception as e:
             #print(e)
             return
