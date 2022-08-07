@@ -151,27 +151,25 @@ class Sub(Connector):
             self.close()
 
 class TData(Connector):
-    
-    def clear_queue(self, timout = 0.1):
 
+    def clear_queue(self):
+        data = ''
         try:
-            while True:
-                str(self.recv(1), 'utf-8')
-        except Exception as e:
-            #print(e)
-            return
-
-
+            while data != None:
+                data = self.receive_data(0.001)
+        except:
+            pass
+    
     def receive_data(self, timeout=None):
         try:
             msg = ""
             if timeout is not None:
-                self.settimeout(1.0)
+                self.settimeout(timeout)
             try:
                 while '\0' not in msg:
                     msg += str(self.recv(1), 'utf-8')
             except socket.timeout:
-                self.clear_queue()
+                #self.clear_queue()
                 return 
 
             section = msg.split(":")[0]
@@ -194,13 +192,12 @@ class TData(Connector):
                     except UnicodeDecodeError:
                         bmsg += self.recv(1)
             msg = msg.replace('\0', '')
-            self.clear_queue()
+            #self.clear_queue()
             return [section, msg]
         except ConnectionResetError:
             pass
         except ConnectionAbortedError:
             pass
-        self.clear_queue()
 
 class AccData(Connector):
     def connect2server(self, callback):
@@ -419,6 +416,9 @@ class Client(Connector):
                 return {}
             else:
                 return xml2dict(*data)
+        else:
+            data = self.tdata.receive_data(5.0)
+            return {}
 
     def get_forts_position(self, client):
         self.send(bytes("forts_position:" + client + '\0', 'utf-8'))
