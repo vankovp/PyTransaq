@@ -266,7 +266,7 @@ class Client(Connector):
 
             if len(msg) != 0:
                 msg = xml2dict('result', msg.replace('\0', ''))
-                print('Response (%s):' % name, msg)
+                #print('Response (%s):' % name, msg)
 
                 return msg
 
