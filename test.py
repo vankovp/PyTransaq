@@ -1,7 +1,7 @@
 from transaq import TransaqConnector
 
 login = 'FZTC19829A'
-ip = 'localhost'
+ip = '192.168.0.240'
 def test():
     tConnector = TransaqConnector(ip)
     if tConnector.connect(login):
