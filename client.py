@@ -153,18 +153,13 @@ class Sub(Connector):
 class TData(Connector):
     
     def clear_queue(self, timout = 0.1):
-        try:
-            msg = ""
-            try:
-                while True:
-                    msg += str(self.recv(1), 'utf-8')
-            except socket.timeout:
-                pass
 
-        except ConnectionResetError:
-            pass
-        except ConnectionAbortedError:
-            pass        
+        try:
+            while True:
+                msg += str(self.recv(1), 'utf-8')
+        except Exception as e:
+            #print(e)
+            return
 
 
     def receive_data(self, timeout=None):
