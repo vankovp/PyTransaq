@@ -91,11 +91,14 @@ def fetch_additional_info_bonds(bondsd, tConnector):
                 if seccode == data['isin']:
                     tConnector.client.tdata.clear_queue()
                     try:
-                        mean_price = mean_candle_price(list(tConnector.get_history_data(seccode = seccode, count = 100, board = data['board'], period=5)['candles'].values())[-1])
+                        candles = tConnector.get_history_data(seccode = seccode, count = 10, board = data['board'], period=5)['candles']
+                        last_day_volume = list(candles.values())[-1]['volume']
+                        mean_price = mean_candle_price(list(candles.values())[-1])
                     except Exception:
                         mean_price = None
                         
-                    data['last_price'] = (mean_price) 
+                    data['last_price'] = mean_price
+                    data['last_day_volume'] = last_day_volume
                     res[seccode] = data
         except Exception as e:
             errored.append(seccode)
@@ -113,6 +116,7 @@ def bondinfo_to_df(bd_dict):
          'board': [],
          'last_price': [],
          'coupon_period': [],
+         'last_day_volume': [],
          'shortname': [],
          'decimals': [],
          'minstep': [],
@@ -174,6 +178,7 @@ def get_bonds_df(tConnector, logger):
         with open('/var/data/bonds_info/last_updated', 'w') as f:
             f.write(str(datetime.now()))
         logger.info('data loaded from transaq server')
+        data['an_int'] = data['daily_interest']*365/10
         return data
 
 
