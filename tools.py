@@ -1,4 +1,15 @@
 import xml.etree.ElementTree as ET
+import xmltodict
+
+
+def xml_to_dict(section, xml):
+    #return xml
+    try:
+        return xmltodict.parse(xml)
+    except Exception as e:
+        print('xml2dict error', e)
+
+
 
 def xml2dict(section, xml):
     try:

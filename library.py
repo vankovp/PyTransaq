@@ -88,7 +88,7 @@ def fetch_additional_info_bonds(bondsd, tConnector):
                 if key not in data:
                     data[key] = new_data
             if data['lotsize'] == "1":
-                if seccode == data['isin']:
+                if seccode == data['isin'] or seccode[:2] == 'SU':
                     tConnector.client.tdata.clear_queue()
                     try:
                         candles = tConnector.get_history_data(seccode = seccode, count = 10, board = data['board'], period=5)['candles']
@@ -182,6 +182,36 @@ def get_bonds_df(tConnector, logger):
         return data
 
 
+def get_portfolio(tConnector, union = "689538RB73O"):
+    data = tConnector.get_mc_portfolio(union = union, asset = True, money = True,
+                           depo = True, registers = True,
+                           currency = True, maxbs = True)
+    res = {}
+
+    def extract_money(data):
+        m = data['mc_portfolio']['money']
+        if m['@currency'] == 'RUB':
+            return m['open_balance']
+
+
+    def extract_positions(data):
+        l = data['mc_portfolio']['security']
+        positions = {}
+        for i in l:
+            positions[i['seccode']] = {'balance': int(i['balance']),
+                                        'currency': i['balance_price_currency'],
+                                        'sum': float(i['equity']),
+                                        'enter_price': float(i['balance_prc']),
+                                        'price': float(i['price'])}
+        return positions
+
+    res['money'] = extract_money(data)
+    res['positions'] = extract_positions(data)
+    bonds = 0
+    for b in res['positions'].values():
+        bonds += b['sum']
+    res['bonds'] = round(bonds, 2)
+    return res
 
 class CachedApiReq:
     """
@@ -320,18 +350,12 @@ class Cached2HourMeanPrices:
     
     
 
-def select_bonds_by_price(prices, keep=0.85):
-    """
-    filter bonds
-    by prices.
-    keep with prices
-    less then nominal
-    and more then
-    (nominal*keep)
-    """
-    keep = keep * 100
-    res = []
-    for figi, price in prices.items():
-        if keep < price < 101:
-            res.append(figi)
-    return res
+def select_bonds_by_price(bonds_df, except_list = []):
+    bonds_df = bonds_df.query('75 < last_price < 103 and daily_interest > 0.05 and facevalue < 2000 and last_day_volume > 10')
+    seccodes = []
+    boards = []
+    for index, row in bonds_df.iterrows():
+        if row['seccode'] not in except_list:
+            seccodes.append(row['seccode'])
+            boards.append(row['board'])
+    return seccodes, boards

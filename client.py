@@ -1,6 +1,6 @@
 import socket
 from multiprocessing import Process
-from tools import xml2dict
+from tools import xml2dict, xml_to_dict
 from threading import Thread, Timer
 import os
 
@@ -115,7 +115,7 @@ class Sub(Connector):
                             msg += str(self.recv(1), 'utf-8')
                         msg = msg.replace('\0', '')
 
-                        event = xml2dict(section, msg)
+                        event = xml_to_dict(section, msg)
 
                         event = {section: event}
 
@@ -149,6 +149,47 @@ class Sub(Connector):
         if not True in [self.subscription[m]['status'] for m in self.subscription]:
             self._is_connected = False
             self.close()
+            
+            
+    def receive_data(self, timeout=None):
+        try:
+            msg = ""
+            if timeout is not None:
+                self.settimeout(timeout)
+            try:
+                while '\0' not in msg:
+                    msg += str(self.recv(1), 'utf-8')
+            except socket.timeout:
+                return 
+
+            section = msg.split(":")[0]
+            bufLength = int(msg.split(":")[1].replace('\0', '')) + 1
+
+            bmsg = self.recv(bufLength)
+            while True:
+                try:
+                    msg = str(bmsg, 'utf-8')
+                    break
+                except UnicodeDecodeError:
+                    bmsg += self.recv(1)
+
+            while '\0' not in msg:
+                bmsg = self.recv(1)
+                while True:
+                    try:
+                        msg += str(bmsg, 'utf-8')
+                        break
+                    except UnicodeDecodeError:
+                        bmsg += self.recv(1)
+            msg = msg.replace('\0', '')
+            try:
+                return xml_to_dict(section, msg)
+            except:
+                return [section, msg]
+        except ConnectionResetError:
+            pass
+        except ConnectionAbortedError:
+            pass
 
 class TData(Connector):
 
@@ -446,7 +487,7 @@ class Client(Connector):
                 return {}
 
             else:
-                return xml2dict(*data)
+                return xml_to_dict(*data)
 
     def get_markets(self):
         self.send(bytes("markets:\0", 'utf-8'))
@@ -455,7 +496,7 @@ class Client(Connector):
         if msg['result']['success'] == 'true':
 
             data = self.tdata.receive_data(2.0)
-            return xml2dict(*data)
+            return xml_to_dict(*data)
 
     def get_servtime_difference(self):
         self.send(bytes("servtime_dif:\0", 'utf-8'))
@@ -477,7 +518,7 @@ class Client(Connector):
 
         if msg['result']['success'] == 'true':
             data = self.tdata.receive_data(2.0)
-            return xml2dict(*data)
+            return xml_to_dict(*data)
     
     def get_server_id(self):
         self.send(bytes("get_sid:\0", 'utf-8'))
@@ -486,7 +527,7 @@ class Client(Connector):
 
         if msg['result']['success'] == 'true':
             data = self.tdata.receive_data(2.0)
-            return xml2dict(*data)
+            return xml_to_dict(*data)
 
     def neworder(self, data):
         self.send(bytes("neworder:" + data, 'utf-8'))
@@ -546,7 +587,7 @@ class Client(Connector):
                 return {}
 
             else:
-                return xml2dict(*data)
+                return xml_to_dict(*data)
 
     def get_united_go(self, union):
         self.send(bytes("united_go:" + union + "\0", 'utf-8'))
@@ -561,7 +602,7 @@ class Client(Connector):
                 return {}
 
             else:
-                return xml2dict(*data)
+                return xml_to_dict(*data)
 
     def get_mc_portfolio(self, data):
         self.send(bytes("mc_portfolio:" + data + "\0", 'utf-8'))
@@ -576,7 +617,7 @@ class Client(Connector):
                 return {}
 
             else:
-                return xml2dict(*data)
+                return xml_to_dict(*data)
 
     def get_max_buy_sell(self, data):
         self.send(bytes("max_buy_sell:" + data + "\0", 'utf-8'))
@@ -606,7 +647,7 @@ class Client(Connector):
                 return {}
 
             else:
-                return xml2dict(*data)
+                return xml_to_dict(*data)
 
     def disconnect(self):
         self.send(bytes("disconnect:\0", 'utf-8'))
@@ -631,4 +672,4 @@ class Client(Connector):
                 data = self.tdata.receive_data(1.0)
                 if data is None:
                     break
-                print(data[0], xml2dict(*data))
+                print(data[0], xml_to_dict(*data))
