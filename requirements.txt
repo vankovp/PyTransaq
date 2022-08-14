@@ -1,2 +1,3 @@
 elementpath
-socket
+websocket
+xmltodict

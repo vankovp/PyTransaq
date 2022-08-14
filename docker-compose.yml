@@ -1,0 +1,20 @@
+---
+
+version: '3.1'
+
+services:
+
+  tr_bonds_trader:
+    image: tr_bonds
+    build: .
+    env_file:
+      - .secrets
+    restart: always
+    # healthcheck:
+    #   test: ["CMD", "python", "healthcheck_trader.py"]
+    #   interval: 15s
+    #   timeout: 2s
+    #   retries: 1
+    volumes:
+      - /var/transaqdata:/var/data
+    command: ["python", "trader.py"]
