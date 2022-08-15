@@ -8,6 +8,8 @@ import threading
 
 import json
 
+from datetime import datetime
+
 messages_stats={'quatations': {'ok': 0, 'error': 0}}
 
 
@@ -20,6 +22,7 @@ def receive_quatations():
             quatations[seccode] = {}
         for key, value in inst_data.items():
             quatations[seccode][key] = value
+        quatations[seccode]['updated'] = str(datetime.now())
 
 
     while True:
