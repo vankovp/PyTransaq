@@ -18,8 +18,8 @@ def receive_quatations():
         seccode = inst_data['seccode']
         if seccode not in quatations:
             quatations[seccode] = {}
-            for key, value in inst_data.items():
-                quatations[seccode][key] = value
+        for key, value in inst_data.items():
+            quatations[seccode][key] = value
 
 
     while True:
