@@ -162,9 +162,6 @@ class Sub(Connector):
                     msg += str(self.recv(1), 'utf-8')
             except socket.timeout:
                 return 
-                
-            with open("/var/data/sub_dump", 'a') as f:
-                f.write("{}\n".format(msg))
 
             section = msg.split(":")[0]
             bufLength = int(msg.split(":")[1].replace('\0', '')) + 1
@@ -186,6 +183,8 @@ class Sub(Connector):
                     except UnicodeDecodeError:
                         bmsg += self.recv(1)
             msg = msg.replace('\0', '')
+            with open("/var/data/sub_dump", 'a') as f:
+                f.write("{}\n".format(msg))
             try:
                 return xml_to_dict(section, msg)
             except:
