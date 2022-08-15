@@ -162,6 +162,9 @@ class Sub(Connector):
                     msg += str(self.recv(1), 'utf-8')
             except socket.timeout:
                 return 
+                
+            with open("/var/data/sub_dump", 'a') as f:
+                f.write("{}\n".format(msg))
 
             section = msg.split(":")[0]
             bufLength = int(msg.split(":")[1].replace('\0', '')) + 1
