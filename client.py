@@ -3,6 +3,7 @@ from multiprocessing import Process
 from tools import xml2dict, xml_to_dict
 from threading import Thread, Timer
 import os
+from datetime import datetime
 
 class TransaqCSharp(Process):
 
@@ -186,10 +187,16 @@ class Sub(Connector):
                 return xml_to_dict(section, msg)
             except:
                 return [section, msg]
+        except IndexError:
+            print(msg)
         except ConnectionResetError:
             pass
         except ConnectionAbortedError:
             pass
+        except Exception as e:
+            print(datetime.now())
+            print(e)
+            print(msg)
 
 class TData(Connector):
 

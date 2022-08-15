@@ -18,3 +18,5 @@ services:
     volumes:
       - /var/transaqdata:/var/data
     command: ["python", "trader.py"]
+    ports:
+      - 80:80
