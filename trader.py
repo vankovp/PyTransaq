@@ -28,7 +28,7 @@ def receive_quatations():
     while True:
         try:
             update = None
-            update = tConnector.client.sub.receive_data(timeout=1)
+            update = tConnector.client.sub.receive_data(timeout=60)
             if update is not None:
                 update = update['quotations']['quotation']
                 if type(update) is list:
