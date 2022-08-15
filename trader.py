@@ -17,12 +17,12 @@ def receive_quatations():
 
 
     def process_inst_data(inst_data):
+        now = str(datetime.now())
         seccode = inst_data['seccode']
         if seccode not in quatations:
             quatations[seccode] = {}
         for key, value in inst_data.items():
-            quatations[seccode][key] = value
-        quatations[seccode]['updated'] = str(datetime.now())
+            quatations[seccode][key] = [value, now]
 
 
     while True:
