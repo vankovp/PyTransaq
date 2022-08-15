@@ -183,8 +183,10 @@ class Sub(Connector):
                     except UnicodeDecodeError:
                         bmsg += self.recv(1)
             msg = msg.replace('\0', '')
-            with open("/var/data/sub_dump", 'a') as f:
-                f.write("{}\n".format(msg))
+
+            # with open("/var/data/sub_dump", 'a') as f:
+            #     f.write("{}\n".format(msg))
+                
             try:
                 return xml_to_dict(section, msg)
             except:
