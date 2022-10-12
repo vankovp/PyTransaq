@@ -53,7 +53,3 @@ class TXmlConnectorWrapper:
     # CallingConvention Winapi
     def set_log_level(self, log_level: int) -> int:
         return self._dll.SetLogLevel(log_level)
-
-def callback(data: str) -> None:
-    print("this is callback", data)
-
