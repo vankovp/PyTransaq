@@ -1,0 +1,11 @@
+{
+    "connection": {
+        "login": "login",
+        "password": "password",
+        "host": "tr1.finam.ru",
+        "port": 3900,
+        "rqdelay": 100,
+        "session_timeout": 25,
+        "request_timeout": 10
+    }
+}

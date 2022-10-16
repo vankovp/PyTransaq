@@ -1,13 +1,19 @@
-import time
+import pydantic
 
 from txml_connector_adapter.dll_wrapper import TXmlConnectorWrapper
+from txml_connector_adapter.t_xml_connector import ConnectionSettings, TXmlConnector
 
-def callback(data: str) -> None:
-    print("it's callback", data)
 
-connector = TXmlConnectorWrapper("./txmlconnector64.dll")
-print(connector.set_callback(callback))
-print(connector.initialize("./logs", 2))
-print(connector.send_command('<command id="server_status"/>'))
-print(connector.send_command('<command id="get_connector_version"/>'))
-time.sleep(4)
+class Config(pydantic.BaseModel):
+    connection: ConnectionSettings
+
+
+with open("config.json", "r") as file:
+    config = pydantic.parse_raw_as(Config, file.read())
+
+dll_wrapper = TXmlConnectorWrapper("./txmlconnector64.dll")
+connector = TXmlConnector(dll_wrapper, config.connection)
+
+connector.init()
+print("Connector initialized")
+print("Connector version:", connector.send_command('<command id="get_connector_version"/>'))
