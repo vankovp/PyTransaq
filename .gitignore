@@ -8,3 +8,4 @@
 .secrets
 logs/
 txmlconnector64.dll
+config.json
